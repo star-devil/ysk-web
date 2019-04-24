@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>医时空基层社区卫生服务站管理系统</title>
+    <link rel="SHORTCUT ICON" href="{% static 'images/favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'AdminLTE-2.4.5/dist/css/AdminLTE.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fileinput.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'AdminLTE-2.4.5/bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'AdminLTE-2.4.5/bower_components/font-awesome/css/font-awesome.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'AdminLTE-2.4.5/bower_components/Ionicons/css/ionicons.css' %}">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_950496_dr0wx795h6.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'AdminLTE-2.4.5/dist/css/skins/skin-blue.css' %}">
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.15/css/jquery.dataTables.css">
+
+<body class="hold-transition skin-blue sidebar-mini">
+    <!--wrapper-->
+    <div class="wrapper">
+
+        <!-- Main Header -->
+        <header class="main-header">
+
+            <!-- Logo -->
+            <a href="{% url 'cms:index' %}" class="logo">
+                <!-- 侧边栏收起时的logo -->
+                <span class="logo-mini"><b>M</b>SP</span>
+                <!-- 展开时的logo-->
+                <span class="logo-lg"><b>Medi</b>SPACE</span>
+            </a>
+
+            <!-- 导航栏 -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- 侧边栏切换按钮-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                </a>
+                <!-- 导航右侧菜单栏 -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown messages-menu">
+                            <!-- 服务提醒按钮 -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">你有<span class="severNum">4</span>位病人即将到预诊期</li>
+                                <li>
+                                    <!-- 内部菜单内容 -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="#">
+                                                <div class="pull-left">
+                                                    <!-- User Image -->
+                                                    <img src="{% static 'AdminLTE-2.4.5/dist/img/avatar04.png' %}"
+                                                        class="img-circle" alt="User Image">
+                                                </div>
+                                                <h4>
+                                                    <p class="first-name"></p>
+                                                    <small><i class="fa fa-clock-o"></i><span class="days">2</span> 天</small>
+                                                </h4>
+                                                <!-- The message -->
+                                                <p class="message"></p>
+                                            </a>
+                                        </li>
+                                        <!-- end message -->
+                                    </ul>
+                                    <!-- /.menu -->
+                                </li>
+                                <li class="footer"><a href="{% url 'cms:index' %}">查看所有通知</a></li>
+                            </ul>
+                        </li>
+                        <!-- /.messages-menu -->
+
+                        <!-- Notifications Menu -->
+                        <li class="dropdown notifications-menu">
+                            <!-- Menu toggle button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header"><span class="homeNum-title">10</span>条服务提醒消息</li>
+                                <li>
+                                    <!-- Inner Menu: contains the notifications -->
+                                    <ul class="menu">
+                                        <li>
+                                            <!-- start notification -->
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i>今日有<span class="homeNum">10</span>位居民需要上门服务
+                                            </a>
+                                        </li>
+                                        <!-- end notification -->
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="{% url 'cms:index' %}">查看所有</a></li>
+                            </ul>
+                        </li>
+
+                        <!-- User Account Menu -->
+                        <li class="dropdown user user-menu">
+                            <!-- Menu Toggle Button -->
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- The user image in the navbar-->
+                                <img src="{% static 'AdminLTE-2.4.5/dist/img/user2-160x160.jpg' %}" class="user-image"
+                                    alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <span class="hidden-xs">{{ user.username }}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- The user image in the menu -->
+                                <li class="user-header">
+                                    <img src="{% static 'AdminLTE-2.4.5/dist/img/user2-160x160.jpg' %}"
+                                        class="img-circle" alt="User Image">
+                                    <p>
+                                        {{ user.username }}
+                                        <small>{{ user.job }}</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="{% url 'yskauth:index' %}" class="btn btn-default btn-flat">切换账号</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="{% url 'yskauth:logout' %}" class="btn btn-default btn-flat">退出系统</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <!-- 左侧列表.包含头像和菜单 -->
+        <aside class="main-sidebar">
+            <section class="sidebar">
+                <!-- 用户 -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="{% static 'AdminLTE-2.4.5/dist/img/user2-160x160.jpg' %}" class="img-circle"
+                            alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>welcome<br>{{ user.username }}</p>
+                    </div>
+                </div>
+                <!-- 侧边栏 -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">菜单列表</li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>基本功能</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li onclick="showSer()" class="sever-data"><a href="#"><i class="fa fa-circle-o"></i> 服务提醒</a></li>
+                            <li onclick="showRes ()"><a href="#"><i class="fa fa-circle-o"></i> 居民管理</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>社区管理</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li onclick="showHel()"><a href="#"><i class="fa fa-circle-o"></i> 健康档案</a></li>
+                            <li onclick="showInfo()"><a href="#"><i class="fa fa-circle-o"></i> 社区资料</a></li>
+                        </ul>
+                    </li>
+                    {% if user.is_superuser %}
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-link"></i> <span>系统管理</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li onclick="showNot()"><a href="#"><i class="fa fa-circle-o"></i> 发布公告</a></li>
+                                <li onclick="showNotSys()" class="loadTab"><a href="#"><i class="fa fa-circle-o"></i> 公告管理</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </section>
+        </aside>
+
+        <!-- 主要内容页之服务提醒-->
+        <div class="content-wrapper sever">
+            <!-- 页头 -->
+            <section class="content-header">
+                <h1>
+                    服务提醒
+                    <small>随访跟踪</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'cms:index' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li class="active">服务提醒</li>
+                </ol>
+            </section>
+            <!-- 主要内容区 -->
+            <section class="content">
+                <!--中心服务表-->
+                <div class="severMission">
+                    <!--筛选按钮-->
+                    <div class="sWrapper">
+                        <i class="fa fa-hospital-o" aria-hidden="true"></i>
+                        <span class="title">中心接诊</span>
+                        <input type="text" class="search" placeholder="按病人姓名搜索...">
+                        <span class="stitle">筛选：</span>
+                        <span class="mbtn sBtn" keywords="检查">检查</span>
+                        <span class="mbtn sBtn" keywords="接种">接种</span>
+                        <span class="mbtn sBtn" keywords="康复">康复</span>
+                        <span class="mbtn sBtn sActive" keywords="所有">所有</span>
+                    </div>
+                    <!--信息栏-->
+                    <ul class="infoWrapper">
+{#                        {% for centerdatum in centerdata %}#}
+{#                            <li class="patientInfo">#}
+{#                            <p class="data"></p>#}
+{#                            <p class="name"></p>#}
+{#                            <p class="desc"></p>#}
+{#                            </li>#}
+{#                        {% endfor %}#}
+                        <!--<li class="patientInfo">-->
+                        <!--<p class="data">2018-12-31</p>-->
+                        <!--<p class="name">李富贵</p>-->
+                        <!--<p class="des">高血压体脂肪检查</p>-->
+                        <!--</li>-->
+                        <!--<li class="patientInfo">-->
+                        <!--<p class="data">2018-12-15</p>-->
+                        <!--<p class="name">曾宝强</p>-->
+                        <!--<p class="des">糖尿病空腹血糖检查</p>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+                <!--上门服务表-->
+                <div class="homeMission">
+                    <div class="sWrapper">
+                        <i class="fa fa-user-md" aria-hidden="true"></i>
+                        <span class="title">上门服务</span>
+                        <input type="text" class="search" placeholder="按病人姓名搜索...">
+                        <span class="stitle">筛选：</span>
+                        <span class="mbtn hBtn" keywords="换药">换药</span>
+                        <span class="mbtn hBtn" keywords="康复">康复</span>
+                        <span class="mbtn hBtn" keywords="随访">随访</span>
+                        <span class="mbtn hBtn sActive" keywords="所有">所有</span>
+                    </div>
+                    <ul class="infoWrapper noPatient">
+                        <!--<li>-->
+                        <!--<div class="patientInfo">-->
+                        <!--<p class="data">9:00</p>-->
+                        <!--<p class="name">吕一苗</p>-->
+                        <!--<p class="des">糖尿病足换药</p>-->
+                        <!--</div>-->
+                        <!--</li>-->
+                        <!--<li>-->
+                        <!--<div class="patientInfo">-->
+                        <!--<p class="data">9:30</p>-->
+                        <!--<p class="name">乐健美</p>-->
+                        <!--<p class="des">高血压康复训练</p>-->
+                        <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+        <!--居民管理-->
+        <div class="content-wrapper residents" style="display: none">
+            <!--页头-->
+            <section class="content-header">
+                <h1>
+                    居民管理
+                    <small>操作数据</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'cms:index' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li class="active">居民管理</li>
+                </ol>
+            </section>
+            <!--内容-->
+            <section class="content">
+                <div class="resWrapper">
+                    <!--中心服务表格内容，包括按钮-->
+                    <div class="zxTable">
+                        <input type="button" class="add" id="zxadd" name="zxadd" value="新增居民">
+                        <span class="tabBtn sm" onclick="showsmTab()">上门服务居民表</span>
+                        <span class="tabBtn tabActive show zx" onclick="showzxTab()">中心服务居民表</span>
+                        <!--中心服务新增居民-->
+                        <div id="zxform" style="display:none" class="form">
+                            <form id="zxList">
+                                <ul>
+                                    <li>
+                                        <label for="name">病人ID&nbsp;&nbsp;&nbsp;：</label>
+                                        <input type="number" id="id" name="svid" placeholder="请输入患者id" required autofocus>
+                                    </li>
+
+                                    <li>
+                                        <label for="name">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                                        <input type="text" id="name" name="name" placeholder="请输入患者姓名" required
+                                            autofocus>
+                                    </li>
+
+                                    <li>
+                                        <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<input type="radio"
+                                                id="male" name="sex" checked="checked" value="男">男</label>
+                                        <label><input type="radio" id="female" name="sex" value="女">女</label>
+                                    </li>
+
+                                    <li>
+                                        <label for="age">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</label>
+                                        <input type="number" id="age" name="age" placeholder="请输入患者年龄" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="status">健康状态：</label>
+                                        <select id="status" name="status" placeholder="请选择患者健康状态" required>
+                                            <option value="良好">良好</option>
+                                            <option value="差">差</option>
+                                        </select>
+                                    </li>
+
+                                    <li>
+                                        <label for="phone">联系电话：</label>
+                                        <input type="tel" id="phone" name="phone" placeholder="请输入患者电话" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="date">日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期：</label>
+                                        <input type="date" id="date" name="date" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="kind">服务项目：</label>
+                                        <input type="text" id="kind" name="kind" placeholder="请按格式输入服务项目" required>
+                                    </li>
+                                </ul>
+                                <button type="button" id="zxbtn">添加</button>
+                                <button type="reset">重置</button>
+                                <button type="button" id="zxclose">取消</button>
+                            </form>
+                        </div>
+                        <!-- 修改用户表单 -->
+                        <!-- 修改用户 -->
+                        <div id="zx-editor-form" style="display:none" class="form">
+                            <form id="zx-editor-List">
+                                <ul>
+                                    <li>
+                                        <label for="name">病人ID&nbsp;&nbsp;&nbsp;：</label>
+                                        <input type="number" id="id" name="svid" required autofocus readonly>
+                                    </li>
+
+                                    <li>
+                                        <label for="name">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                                        <input type="text" id="name" name="name" required autofocus>
+                                    </li>
+
+                                    <li>
+                                        <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<input type="radio"
+                                                id="male" name="sex" checked="checked" value="男">男</label>
+                                        <label><input type="radio" id="female" name="sex" value="女">女</label>
+                                    </li>
+
+                                    <li>
+                                        <label for="age">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</label>
+                                        <input type="number" id="age" name="age" placeholder="请输入患者年龄" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="status">健康状态：</label>
+                                        <select id="status" name="status" placeholder="请选择患者健康状态" required>
+                                            <option value="良好">良好</option>
+                                            <option value="差">差</option>
+                                        </select>
+                                    </li>
+
+                                    <li>
+                                        <label for="phone">联系电话：</label>
+                                        <input type="tel" id="phone" name="phone" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="date">日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期：</label>
+                                        <input type="date" id="date" name="date" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="kind">服务项目：</label>
+                                        <input type="text" id="kind" name="kind" required>
+                                    </li>
+                                </ul>
+                                <button type="button" id="zx-editor-btn">提交</button>
+                                <button type="reset">重置</button>
+                                <button type="button" id="zx-editor-close">取消</button>
+                            </form>
+                        </div>
+                        <!-- 中心接诊表格 -->
+                        <table id="zxtable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>序号</th>
+                                    <th>病人ID</th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>年龄</th>
+                                    <th>健康状态</th>
+                                    <th>联系电话</th>
+                                    <th>服务日期</th>
+                                    <th>中心服务项目</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="zxtb"></tbody>
+                        </table>
+                    </div>
+                    <!--上门服务表格内容，包括按钮-->
+                    <div class="smTable" style="display: none">
+                        <input type="button" class="add" id="smadd" name="smadd" value="新增居民">
+                        <span class="tabBtn tabActive sm" onclick="showsmTab()">上门服务居民表</span>
+                        <span class="tabBtn show zx" onclick="showzxTab()">中心服务居民表</span>
+                        <div id="smform" style="display:none" class="form">
+                            <form id="smList">
+                                <ul>
+                                    <li>
+                                        <label for="name">病人ID&nbsp;&nbsp;&nbsp;：</label>
+                                        <input type="number" id="smid" name="svid" placeholder="请输入患者id" required
+                                            autofocus>
+                                    </li>
+
+                                    <li>
+                                        <label for="smname">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                                        <input type="text" id="smname" name="smname" placeholder="请输入患者姓名" required
+                                            autofocus>
+                                    </li>
+
+                                    <li>
+                                        <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<input type="radio"
+                                                id="smmale" name="sex" checked="checked" value="男">男</label>
+                                        <label><input type="radio" id="smfemale" name="sex" value="女">女</label>
+                                    </li>
+                                    <li>
+                                        <label for="smphone">联系电话：</label>
+                                        <input type="tel" id="smphone" name="smphone" placeholder="请输入患者电话" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="smphone">家庭住址：</label>
+                                        <input type="tel" id="address" name="address" placeholder="请输入患者住址" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="date">日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期：</label>
+                                        <input type="date" id="date" name="date" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="time">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label>
+                                        <input type="time" id="time" name="time" required>
+                                    </li>
+
+                                    <li>
+                                        <label for="smkind">服务项目：</label>
+                                        <input type="text" id="smkind" name="smkind" placeholder="请按格式输入服务项目" required>
+                                    </li>
+                                </ul>
+                                <button type="button" id="smbtn">添加</button>
+                                <button type="reset">重置</button>
+                                <button type="button" id="smclose">取消</button>
+                            </form>
+                        </div>
+                        <!-- 上门服务修改表单 -->
+                        <div id="sm-editor-form" style="display:none" class="form">
+                            <form id="sm-editor-List">
+                                <ul>
+                                    <li>
+                                        <label for="name">病人ID&nbsp;&nbsp;&nbsp;：</label>
+                                        <input type="number" id="smid" name="svid" required autofocus readonly>
+                                    </li>
+                                    <li>
+                                        <label for="smname">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                                        <input type="text" id="smname" name="smname" required autofocus>
+                                    </li>
+                                    <li>
+                                        <label>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<input type="radio"
+                                                id="smmale" name="sex" checked="checked" value="男">男</label>
+                                        <label><input type="radio" id="smfemale" name="sex" value="女">女</label>
+                                    </li>
+                                    <li>
+                                        <label for="smphone">联系电话：</label>
+                                        <input type="tel" id="smphone" name="smphone" required>
+                                    </li>
+                                    <li>
+                                        <label for="smphone">家庭住址：</label>
+                                        <input type="tel" id="address" name="address" required>
+                                    </li>
+                                    <li>
+                                        <label for="date">日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;期：</label>
+                                        <input type="date" id="date" name="date" required>
+                                    </li>
+                                    <li>
+                                        <label for="time">时&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;间：</label>
+                                        <input type="time" id="time" name="time" required>
+                                    </li>
+                                    <li>
+                                        <label for="smkind">服务项目：</label>
+                                        <input type="text" id="smkind" name="smkind" required>
+                                    </li>
+                                </ul>
+                                <!---------------------------------------- 3.29修改部分 -------------------------------------------->
+                                <button type="button" id="sm-editor-btn">提交</button>
+                                <button type="reset">重置</button>
+                                <button type="button" id="sm-editor-close">取消</button>
+                                <!---------------------------------------- 修改部分结束 -------------------------------------------->
+                            </form>
+                        </div>
+                        <!-- 上门服务表格 -->
+                        <table id="smtable" class="display">
+                            <thead>   
+                                <tr>  
+                                    <th>序号</th>
+                                    <th>病人ID</th>
+                                    <th>姓名</th>
+                                    <th>性别</th>
+                                    <th>联系电话</th>
+                                    <th>家庭住址</th>
+                                    <th>服务日期</th>
+                                    <th>服务时间</th>
+                                    <th>上门服务项目</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="smtb"></tbody>
+                        </table>
+                    </div>
+                </div>
+                  
+            </section>
+        </div>
+
+        <!--健康档案-->
+        <div class="content-wrapper health" style="display: none">
+            <!--页头-->
+            <section class="content-header">
+                <h1>
+                    健康档案
+                    <small>社区档案</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'cms:index' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li class="active">健康档案</li>
+                </ol>
+            </section>
+            <!--内容-->
+            <section class="content">
+                <!--家庭结构-->
+                <div class="pieechart familyEchart">
+                </div>
+                <!--婚姻状况-->
+                <div class="pieechart marryEchart">
+                </div>
+                <!--年龄、男女比例图表-->
+                <div class="histoechart ageEchart">
+                </div>
+                <!--文化程度、男女比例图表-->
+                <div class="histoechart eduEchart">
+                </div>
+            </section>
+        </div>
+
+        <!--社区管理之社区资料-->
+        <div class="content-wrapper information" style="display: none">
+            <!--页头-->
+            <section class="content-header">
+                <h1>
+                    社区资料
+                    <small>基本数据</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'cms:index' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li class="active">社区资料</li>
+                </ol>
+            </section>
+            <section class="content container-fluid">
+                <div class="row">
+                    <form id="informationForm" >
+                        <div class="control-group1 col-xs-6 col-md-3">
+                            <!-- Text input-->
+                            <p>
+                                <label class="control-label">服务站名称</label>
+                                <input type="text" id="stationName" placeholder="" class="input-xlarge" readonly>
+                            </p>
+
+                            <p>
+                                <label class="control-label">总人口数</label>
+                                <input type="text" id="totalNumber" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">男性人口数</label>
+                                <input type="text" id="malePeople" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">女性人口数</label>
+                                <input type="text" id="femalePeople" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">工作人员总数</label>
+                                <input type="text" id="staffCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">全科医生人数</label>
+                                <input type="text" id="physicianCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">临床医师人数</label>
+                                <input type="text" id="doctorCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">康复医师人数</label>
+                                <input type="text" id="recoveryCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">预防人员人数</label>
+                                <input type="text" id="preventCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">护理人员总数</label>
+                                <input type="text" id="nurseCount" placeholder="" class="input-xlarge">
+                            </p>
+                        </div>
+
+                        <div class="control-group2 col-xs-6 col-md-3">
+                            <!-- Text input-->
+                            <p>
+                                <label class="control-label">家庭总数</label>
+                                <input type="text" id="familyCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">单亲家庭数</label>
+                                <input type="text" id="singleParent" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">主干家庭数</label>
+                                <input type="text" id="mainFamily" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">联合家庭数</label>
+                                <input type="text" id="uniteFamily" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">其他家庭数</label>
+                                <input type="text" id="otherFamily" placeholder="" class="input-xlarge">
+                            </p>
+                            <p>
+                                <label class="control-label">未婚人数</label>
+                                <input type="text" id="spinsterhoodCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">已婚人数</label>
+                                <input type="text" id="marriedCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">再婚人数</label>
+                                <input type="text" id="remarryCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">离婚人数</label>
+                                <input type="text" id="divorceCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">丧偶人数</label>
+                                <input type="text" id="widCount" placeholder="" class="input-xlarge">
+                            </p>
+                        </div>
+
+                        <div class="control-group3 col-xs-6 col-md-3">
+                            <!-- Text input-->
+                            <p>
+                                <label class="control-label">文盲人数</label>
+                                <input type="text" id="illiteracyCount" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">小学人数</label>
+                                <input type="text" id="primarySchool" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">初中人数</label>
+                                <input type="text" id="middleSchool" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">高中人数</label>
+                                <input type="text" id="seniorSchool" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">中专人数</label>
+                                <input type="text" id="technicalSecondary" placeholder="" class="input-xlarge">
+                            </p>
+                            <p>
+                                <label class="control-label">大专人数</label>
+                                <input type="text" id="juniorCollege" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">本科人数</label>
+                                <input type="text" id="regularCollege" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">硕士人数</label>
+                                <input type="text" id="masterPeople" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">博士及以上</label>
+                                <input type="text" id="doctorPeople" placeholder="" class="input-xlarge">
+                            </p>
+                        </div>
+
+                        <div class="control-group4 col-xs-6 col-md-3">
+                            <!-- Text input-->
+                            <p>
+                                <label class="control-label">0-1岁人数</label>
+                                <input type="text" id="age01" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">2-4岁人数</label>
+                                <input type="text" id="age24" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">5-9岁人数</label>
+                                <input type="text" id="age59" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">10-14岁人数</label>
+                                <input type="text" id="age1014" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">15-18岁人数</label>
+                                <input type="text" id="age1518" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">19-24岁人数</label>
+                                <input type="text" id="age1924" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">25-30岁人数</label>
+                                <input type="text" id="age2530" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">31-40岁人数</label>
+                                <input type="text" id="age3140" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">41-50岁人数</label>
+                                <input type="text" id="age4150" placeholder="" class="input-xlarge">
+                            </p>
+
+                            <p>
+                                <label class="control-label">51-60岁人数</label>
+                                <input type="text" id="age5160" placeholder="" class="input-xlarge">
+                            </p>
+                            <p>
+                                <label class="control-label">61-70岁人数</label>
+                                <input type="text" id="age6170" placeholder="" class="input-xlarge">
+                            </p>
+                            <p>
+                                <label class="control-label">71-80岁人数</label>
+                                <input type="text" id="age7180" placeholder="" class="input-xlarge">
+                            </p>
+                            <p>
+                                <label class="control-label">80岁以上人数</label>
+                                <input type="text" id="age80up" placeholder="" class="input-xlarge">
+                            </p>
+                        </div>
+                        <button type="button" class="inputBtn" id="saveBtn">保存数据</button>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <!--系统管理之发布公告-->
+        <div class="content-wrapper not" style="display: none">
+            <!--页头-->
+            <section class="content-header">
+                <h1>
+                    发布公告
+                    <small>编辑公告</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'cms:index' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li class="active">发布公告</li>
+                </ol>
+            </section>
+            <!--内容-->
+            <section class="content">
+                <div class="notGroup">
+                    <p>公告标题</p>
+                    <input type="text" class="form-control">
+                </div>
+                <div class="notGroup imgGroup">
+                    <p>背景图片</p>
+{#                    <input type="text" class="control" id="imgurl" readonly>#}
+{#                    <input type="file" name="txt_file" id="txt_file" class="file">#}
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="thumbnail" id="thumbnail-form">
+                        <span class="input-group-btn">
+                            <lable class="btn btn-default btn-file" for="thumbnail-btn">
+                                上传图片<input hidden type="file" class="btn btn-default" id="thumbnail-btn">
+                            </lable>
+                        </span>
+                    </div>
+                </div>
+                <p>请编辑公告内容：</p>
+                <div class="editor"></div>
+                <div class="notBtn" id="submitBtn">确定发布</div>
+            </section>
+        </div>
+
+        <!--系统管理之公告管理-->
+        <div class="content-wrapper notsys" style="display: none">
+            <!--页头-->
+            <section class="content-header">
+                <h1>
+                    公告管理
+                    <small>操作公告</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="{% url 'cms:index' %}"><i class="fa fa-dashboard"></i> 首页</a></li>
+                    <li class="active">公告管理</li>
+                </ol>
+            </section>
+            <!--内容-->
+            <section class="content">
+                <table id="noticeTable" class="display">
+                    <thead>   
+                        <tr>  
+                            <th>序号</th>
+                            <th>公告标题</th>
+                            <th width="39%">公告内容</th>
+                            <th>发布者</th>
+                            <th>发布时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
+        </div>
+        <!--/wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                MediSPACE
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2018 <a href="{% url 'news:index' %}">医时空</a>.</strong> 版权所有.
+        </footer>
+    </div>
+
+    <!--响应式布局工具库-->
+    <script type="text/javascript" src="{% static 'AdminLTE-2.4.5/bower_components/jquery/dist/jquery.min.js' %}">
+    </script>
+    <script type="text/javascript" charset="utf8" src="http://cdn.datatables.net/1.10.15/js/jquery.dataTables.js"></script>
+    <script type="text/javascript"
+        src="{% static 'AdminLTE-2.4.5/bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'AdminLTE-2.4.5/dist/js/adminlte.min.js' %}"></script>
+    <script type="text/javascript"
+        src="{% static 'AdminLTE-2.4.5/bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'AdminLTE-2.4.5/bower_components/fastclick/lib/fastclick.js' %}">
+    </script>
+
+    <!--弹窗工具库-->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- 上传文件组件库 -->
+    <script src="{% static 'js/fileinput.min.js' %}"></script>
+    <script src="{% static 'js/zh.js' %}"></script>
+
+    <!--富文本编辑器工具库-->
+    <script src="{% static 'js/wangEditor.min.js' %}"></script>
+    <script>
+        var E = window.wangEditor;
+        var editor2 = new E('.editor');
+        editor2.create();
+    </script>
+
+    <!--自己的工具库-->
+    <script src="{% static 'js/message.js' %}"></script>
+    <script src="{% static 'js/yskajax.js' %}"></script>
+
+    <script src="{% static 'js/severData.js' %}"></script>
+    <script src="{% static 'js/homeDate.js' %}"></script>
+
+    <script src="{% static 'js/zxtable.js' %}"></script>
+    <script src="{% static 'js/smtable.js' %}"></script>
+    <script src="{% static 'js/noticeTable.js' %}"></script>
+    <script src="{% static 'js/communityInfo.js' %}"></script>
+
+    <!--图表工具库-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.1.0/echarts.min.js"></script>
+    <script src="{% static 'js/echarts.js' %}"></script>
+
+    <!--自定义显示隐藏函数-->
+    <script>
+        function showSer() {
+            $('.sever').show();
+            $('.residents').hide();
+            $('.health').hide();
+            $('.not').hide();
+            $('.notsys').hide();
+            $('.information').hide();
+        }
+
+        function showRes() {
+            zxList();
+            $('.residents').show();
+            $('.health').hide();
+            $('.sever').hide();
+            $('.not').hide();
+            $('.notsys').hide();
+            $('.information').hide();
+        }
+
+        function showHel() {
+            $('.health').show();
+            $('.residents').hide();
+            $('.sever').hide();
+            $('.not').hide();
+            $('.notsys').hide();
+            $('.information').hide();
+        }
+
+        function showNot() {
+            $('.not').show();
+            $('.health').hide();
+            $('.residents').hide();
+            $('.sever').hide();
+            $('.notsys').hide();
+            $('.information').hide();
+        }
+
+        function showNotSys() {
+            noticeList();
+            $('.notsys').show();
+            $('.not').hide();
+            $('.health').hide();
+            $('.residents').hide();
+            $('.sever').hide();
+            $('.information').hide();
+        }
+
+        function showInfo() {
+            communityInfo();
+            $('.information').show();
+            $('.notsys').hide();
+            $('.not').hide();
+            $('.health').hide();
+            $('.residents').hide();
+            $('.sever').hide();
+        }
+
+        function showzxTab() {
+            zxList();
+            document.getElementsByClassName('zxTable')[0].style.display = 'block';
+            document.getElementsByClassName('smTable')[0].style.display = 'none';
+        }
+
+        function showsmTab() {
+            smList();
+            document.getElementsByClassName('zxTable')[0].style.display = 'none';
+            document.getElementsByClassName('smTable')[0].style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
