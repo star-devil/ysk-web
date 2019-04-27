@@ -207,7 +207,7 @@ function smList() {
                 if (result['code'] === 200) {
                     window.messageBox.showSuccess('新增成功');
                     // $('.smTable .sm').trigger('click');
-                    // $('#smList')[0].reset();
+                    $('#smList')[0].reset();
                     this.smList();
                 }
             }

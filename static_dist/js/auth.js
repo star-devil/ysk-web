@@ -24,6 +24,7 @@ function listenLoginEvent() {
                 'remember': remember?1:0
             },
             'success': function (result) {
+                console.log(result);
                 if (result['code'] === 200) {
                     yskajax.get({
                         'url': '/cms/get_url/',
@@ -33,9 +34,6 @@ function listenLoginEvent() {
                             }
                         }
                     });
-
-                }else {
-                    window.messageBox.showInfo('用户名或密码错误！');
                 }
             }
         });
